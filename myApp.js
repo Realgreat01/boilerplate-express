@@ -8,6 +8,7 @@ app.get("/", ((req, res) =>{
         <a href="/public"> public </a>
         `, 
     "utf8", "text/html")
+    console.log(req.ip)
 }))
 
 app.get("/json", (req, res)=>{
