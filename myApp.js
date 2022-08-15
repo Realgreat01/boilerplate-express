@@ -2,14 +2,21 @@ let express = require('express');
 let app = express();
 require('dotenv').config()
 
-app.get("/", ((req, res) =>{ 
+app.get("/",(req, res, next) =>{ 
     res.send(`<h1>Hello</h1> <br>
         <a href="/json"> Json </a> <br>
         <a href="/public"> public </a>
         `, 
     "utf8", "text/html")
     console.log(req.ip)
-}))
+    next();
+})
+
+app.use((req, res, next)=>{
+    const value = req.method + " " + req.path + " - " + req.ip;
+    console.log(value)
+    next()
+})
 
 app.get("/json", (req, res)=>{
     let value = "Hello json"
