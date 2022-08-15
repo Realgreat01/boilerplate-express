@@ -9,6 +9,7 @@ app.get("/",(req, res, next) =>{
         <a href="/json"> Json </a> <br>
         <a href="/public"> public </a> <br>
         <a href="/now"> now </a> <br>
+        <a href="/name/?first=firstName&last=lastName"> name </a> <br>
         `, 
     "utf8", "text/html")
     console.log(req.ip)
