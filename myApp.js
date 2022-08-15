@@ -1,7 +1,9 @@
 let express = require('express');
 let app = express();
+const router = require("./router.js")
 require('dotenv').config()
 
+app.use(router)
 app.get("/",(req, res, next) =>{ 
     res.send(`<h1>Hello</h1> <br>
         <a href="/json"> Json </a> <br>
@@ -13,30 +15,13 @@ app.get("/",(req, res, next) =>{
     next();
 })
 
+app.get("/:word/echo", (req, res, next) => {
+    res.json({echo: req.params.word})
+})
 app.use((req, res, next)=>{
     const value = req.method + " " + req.path + " - " + req.ip;
     console.log(value)
     next()
-})
-
-app.get("/now", (req, res, next) => {
-    req.time = new Date().toString();
-    next()}, 
-    (req, res) => {
-    res.send({ time: req.time });
-}
-);
-
-app.get("/json", (req, res)=>{
-    let value = "Hello json"
-    if (process.env.MESSAGE_STYLE === "uppercase") {
-            return res.json({message: value.toUpperCase()});
-        } else {
-            return res.json({message: value})
-        }
-})
-app.get("/public", (req, res) => {
-    res.sendFile(__dirname+"/views/index.html")
 })
 
 app.use("/public",express.static(__dirname+"/public"))
