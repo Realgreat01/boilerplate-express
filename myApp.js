@@ -5,7 +5,8 @@ require('dotenv').config()
 app.get("/",(req, res, next) =>{ 
     res.send(`<h1>Hello</h1> <br>
         <a href="/json"> Json </a> <br>
-        <a href="/public"> public </a>
+        <a href="/public"> public </a> <br>
+        <a href="/now"> now </a> <br>
         `, 
     "utf8", "text/html")
     console.log(req.ip)
@@ -17,6 +18,14 @@ app.use((req, res, next)=>{
     console.log(value)
     next()
 })
+
+app.get("/now", (req, res, next) => {
+    req.time = new Date().toString();
+    next()}, 
+    (req, res) => {
+    res.send({ time: req.time });
+}
+);
 
 app.get("/json", (req, res)=>{
     let value = "Hello json"
