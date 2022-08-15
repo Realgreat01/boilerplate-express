@@ -1,8 +1,11 @@
 let express = require('express');
 let app = express();
+const bodyParser = require("body-parser")
+const query = require("./query")
 const router = require("./router.js")
 require('dotenv').config()
 
+app.use(bodyParser.json())
 app.use(router)
 app.get("/",(req, res, next) =>{ 
     res.send(`<h1>Hello</h1> <br>
@@ -15,16 +18,8 @@ app.get("/",(req, res, next) =>{
     console.log(req.ip)
     next();
 })
-app.use("/name", function(req, res) {
-  var firstName = req.query.first;
-  var lastName = req.query.last;
-  firstName = "firstname"
-  lastName = "lastname"
-  // Use template literals to form a formatted string
-  res.json({
-    name: `${firstName} ${lastName}`
-  });
-});
+
+app.use("/name", query)
 
 app.get("/:word/echo", (req, res, next) => {
     res.json({echo: req.params.word})
