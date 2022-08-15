@@ -22,13 +22,16 @@ app.get("/public", (req, res) => {
 
 // Using Query
 app.get("/name", function(req, res) {
-  var firstName = req.query.first;
-  var lastName = req.query.last;
+    req.query.first = "firstName";
+    req.query.last = "lastName";
+
+//   var firstName = req.query.first;
+//   var lastName = req.query.last;
   // OR you can destructure and rename the keys
-  var { first: firstName, last: lastName } = req.query;
   // Use template literals to form a formatted string
+  console.log(req.query)
   res.json({
-    name: `${firstName} ${lastName}`
+    name: `${req.query.first} ${req.query.last}`
   });
 });
 module.exports = app
