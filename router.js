@@ -20,7 +20,8 @@ app.get("/public", (req, res) => {
     res.sendFile(__dirname+"/views/index.html")
 })
 
-app.get("/name", (req, res, next) => {
+// Using Query
+app.get("/name", function(req, res) {
   var firstName = req.query.first;
   var lastName = req.query.last;
   // OR you can destructure and rename the keys
