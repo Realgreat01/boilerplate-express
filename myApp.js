@@ -15,11 +15,11 @@ app.get("/",(req, res, next) =>{
     console.log(req.ip)
     next();
 })
-app.get("/name", function(req, res) {
+app.use("/name", function(req, res) {
   var firstName = req.query.first;
   var lastName = req.query.last;
-  firstName = "firstName"
-  lastName = "last Name"
+  firstName = "firstname"
+  lastName = "lastname"
   // Use template literals to form a formatted string
   res.json({
     name: `${firstName} ${lastName}`
