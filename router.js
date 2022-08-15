@@ -20,18 +20,5 @@ app.get("/public", (req, res) => {
     res.sendFile(__dirname+"/views/index.html")
 })
 
-// Using Query
-app.get("/name", function(req, res) {
-    req.query.first = "firstName";
-    req.query.last = "lastName";
 
-//   var firstName = req.query.first;
-//   var lastName = req.query.last;
-  // OR you can destructure and rename the keys
-  // Use template literals to form a formatted string
-  console.log(req.query)
-  res.json({
-    name: `${req.query.first} ${req.query.last}`
-  });
-});
 module.exports = app
