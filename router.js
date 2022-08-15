@@ -21,7 +21,7 @@ app.get("/public", (req, res) => {
 })
 
 // Using Query
-app.get("/name/?first=firstname&last=lastname", function(req, res) {
+app.get("/name", function(req, res) {
   var firstName = req.query.first;
   var lastName = req.query.last;
   // OR you can destructure and rename the keys
